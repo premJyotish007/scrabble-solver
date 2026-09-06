@@ -1,0 +1,4 @@
+__pycache__/
+trie.pickle
+NWL2023.db
+.DS_Store

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Scrabble State Reader</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="sidepanel.css" />
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header class="header">
+      <div class="title-row">
+        <h2>Scrabble State Reader</h2>
+        <div class="badges">
+          <span id="connection-status" class="status-badge checking">Tab: Checking...</span>
+          <span id="server-status" class="status-badge checking">Server: Checking...</span>
+        </div>
+      </div>
+      <p class="subtitle">Reads board &amp; rack &bull; Backend: 127.0.0.1:5050</p>
+    </header>
+
+    <!-- Controls -->
+    <section class="controls">
+      <button id="btn-scan" class="btn-primary">
+        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="12" cy="12" r="9"></circle>
+          <path d="M12 3v4M12 17v4M3 12h4M17 12h4"></path>
+          <circle cx="12" cy="12" r="3"></circle>
+        </svg>
+        <span class="btn-label">Read Board &amp; Rack</span>
+      </button>
+
+      <button id="btn-test-server" class="btn-secondary" title="Ping Python backend server">
+        <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+        </svg>
+        <span>Test Server</span>
+      </button>
+    </section>
+
+    <!-- Suggested Move Result -->
+    <section id="move-result-section" class="move-result-section hidden">
+      <div class="result-card">
+        <div class="result-header">
+          <div class="badge-label">BEST MOVE</div>
+          <div id="move-score-pill" class="score-pill">+0 pts</div>
+        </div>
+
+        <div class="word-display-area">
+          <div id="word-tiles" class="word-tiles"></div>
+        </div>
+
+        <div class="details-grid">
+          <div class="detail-card">
+            <span class="detail-label">Start Cell</span>
+            <span id="move-start-cell" class="detail-value highlight">—</span>
+            <span id="move-start-coord" class="detail-sub">—</span>
+          </div>
+
+          <div class="detail-card">
+            <span class="detail-label">Direction</span>
+            <div class="dir-value-group">
+              <span id="move-dir-arrow" class="dir-arrow">→</span>
+              <span id="move-dir-name" class="detail-value">Right</span>
+            </div>
+            <span id="move-dir-type" class="detail-sub">Across</span>
+          </div>
+
+          <div class="detail-card">
+            <span class="detail-label">Points</span>
+            <span id="move-total-score" class="detail-value score-text">0</span>
+            <span class="detail-sub">calculated</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Empty / Fallback State -->
+    <div id="no-move-banner" class="no-move-banner hidden">
+      <span id="no-move-msg">No move found for this board state.</span>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast hidden">
+      <span id="toast-text"></span>
+    </div>
+  </div>
+
+  <script src="sidepanel.js"></script>
+</body>
+</html>
